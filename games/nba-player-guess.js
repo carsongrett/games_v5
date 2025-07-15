@@ -18,8 +18,10 @@
     function showNBAPlayerGame() {
         document.getElementById('game-container').innerHTML = `
             <div style="text-align: center; max-width: 1000px; margin: 0 auto;" id="gameContainer">
-                <h2>Guess the NBA Player</h2>
-                <p style="margin-bottom: 20px; color: #666;">Data is from 2024 season. Hints available on 5th and 7th guess.</p>
+                <div class="game-header">
+                    <h2>Guess the NBA Player</h2>
+                    <p style="margin-bottom: 20px; color: #666;">Data is from 2024 season. Hints available on 5th and 7th guess.</p>
+                </div>
                 
                 <div style="margin-bottom: 20px;">
                     <div style="margin-bottom: 10px; position: relative;">
@@ -121,6 +123,9 @@
                     <button onclick="goHome()" style="padding: 10px 20px; background: white; border: 2px solid black; cursor: pointer; font-size: 16px;">
                         Back to Home
                     </button>
+                    <button id="mobileHomeButton" onclick="goHome()" style="display: none; padding: 6px 12px; background: white; border: 1px solid #007cba; color: #007cba; cursor: pointer; font-size: 13px; border-radius: 3px; margin-left: 8px;">
+                        ← Home
+                    </button>
                 </div>
                 
                 <div style="margin-top: 20px; font-size: 0.9rem; color: #666;">
@@ -129,6 +134,25 @@
                     <p>↑ <strong>Arrow up:</strong> Target is higher | ↓ <strong>Arrow down:</strong> Target is lower</p>
                 </div>
             </div>
+            
+            <style>
+                @media (max-width: 768px) {
+                    #gameContainer {
+                        max-width: none !important;
+                        margin: 0 !important;
+                        padding: 10px !important;
+                    }
+                    .game-header {
+                        display: none !important;
+                    }
+                    #mobileHomeButton {
+                        display: inline-block !important;
+                    }
+                    button[onclick="goHome()"]:not(#mobileHomeButton) {
+                        display: none !important;
+                    }
+                }
+            </style>
         `;
         
         loadPlayersData();

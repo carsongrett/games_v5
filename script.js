@@ -52,7 +52,7 @@ function loadGame(gameName) {
 function showGamePlaceholder(game) {
     document.body.innerHTML = `
         <div class="container">
-            <header>
+            <header class="game-header">
                 <h1>${game.name}</h1>
                 <button id="back-to-home-btn" style="padding: 10px 20px; background: white; border: 2px solid black; cursor: pointer; margin-bottom: 20px;">
                     Back to Home
@@ -65,6 +65,27 @@ function showGamePlaceholder(game) {
                 </div>
             </main>
         </div>
+        <style>
+            @media (max-width: 768px) {
+                .game-header {
+                    display: none !important;
+                }
+                .container {
+                    padding: 10px !important;
+                }
+                main {
+                    min-height: 100vh !important;
+                    align-items: flex-start !important;
+                    padding-top: 10px !important;
+                }
+                #game-container {
+                    padding: 20px !important;
+                    border: none !important;
+                    width: 100% !important;
+                    max-width: none !important;
+                }
+            }
+        </style>
     `;
     
     // Add event listener for back button
