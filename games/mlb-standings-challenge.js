@@ -8,10 +8,8 @@
     function showMLBStandingsGame() {
         document.getElementById('game-container').innerHTML = `
             <div style="text-align: center; max-width: 1200px; margin: 0 auto;" id="mlb-standings-container">
-                <div class="game-header">
-                    <h2>MLB Standings Challenge</h2>
-                    <p style="margin-bottom: 20px; color: #666;">Guess which team belongs in each league ranking position. You have 15 lives!</p>
-                </div>
+                <h2>MLB Standings Challenge</h2>
+                <p style="margin-bottom: 20px; color: #666;">Guess which team belongs in each league ranking position. You have 15 lives!</p>
                 
                 <div style="margin-bottom: 20px; display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
                     <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border: 2px solid #ddd;">
@@ -29,43 +27,21 @@
                     <div id="mlb-standings-nl" class="league-standings"></div>
                 </div>
 
-                                <div style="margin-top: 20px;">
+                <div style="margin-top: 20px;">
                     <button id="mlb-standings-new-game" onclick="newMLBStandingsGame()" style="padding: 10px 20px; background: white; border: 2px solid black; cursor: pointer; margin-right: 10px; font-size: 16px;">
                         New Game
                     </button>
                     <button onclick="goHome()" style="padding: 10px 20px; background: white; border: 2px solid black; cursor: pointer; font-size: 16px;">
                         Back to Home
                     </button>
-                    <button id="mobileHomeButton" onclick="goHome()" style="display: none; padding: 6px 12px; background: white; border: 1px solid #007cba; color: #007cba; cursor: pointer; font-size: 13px; border-radius: 3px; margin-left: 8px;">
-                        ← Home
-                    </button>
                 </div>
-                
+
                 <div style="margin-top: 20px; font-size: 0.9rem; color: #666;">
                     <p><strong>How to play:</strong> Click on any team position to guess which team belongs there.</p>
                     <p>🟢 <strong>Green:</strong> Correct guess | 🔴 <strong>Red:</strong> Wrong guess</p>
                     <p>Game uses real MLB standings data from the current season!</p>
                 </div>
             </div>
-            
-            <style>
-                @media (max-width: 768px) {
-                    #mlb-standings-container {
-                        max-width: none !important;
-                        margin: 0 !important;
-                        padding: 10px !important;
-                    }
-                    .game-header {
-                        display: none !important;
-                    }
-                    #mobileHomeButton {
-                        display: inline-block !important;
-                    }
-                    button[onclick="goHome()"]:not(#mobileHomeButton) {
-                        display: none !important;
-                    }
-                }
-            </style>
         `;
         
         // Initialize the game
