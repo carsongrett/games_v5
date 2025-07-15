@@ -7,51 +7,78 @@
 
     function showMLBDivisionGame() {
         document.getElementById('game-container').innerHTML = `
-            <div style="text-align: center; max-width: 1400px; margin: 0 auto;" id="mlb-division-container">
-                <h2>MLB Division Challenge</h2>
-                <p style="margin-bottom: 20px; color: #666;">Guess which team belongs in each division ranking position. You have 15 lives!</p>
+            <div style="text-align: center; max-width: 1400px; margin: 0 auto; padding-top: 5px;" id="mlb-division-container">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <div style="margin: 0; font-size: 1.2rem; font-weight: normal;">MLB Division Challenge</div>
+                    <button onclick="goHome()" style="padding: 6px 12px; background: white; border: 1px solid #ccc; cursor: pointer; font-size: 13px; border-radius: 4px;">
+                        ← Home
+                    </button>
+                </div>
+                <p style="margin: 0 0 8px 0; color: #666; font-size: 0.85rem;">Guess division rankings • 15 lives • Current season data</p>
                 
-                <div style="margin-bottom: 20px; display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
-                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border: 2px solid #ddd;">
+                <div style="margin-bottom: 10px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                    <div style="background: #f8f9fa; padding: 10px; border-radius: 6px; border: 1px solid #ddd; font-size: 0.9rem;">
                         <strong>Lives: <span id="mlb-division-lives">15</span></strong>
                     </div>
-                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border: 2px solid #ddd;">
+                    <div style="background: #f8f9fa; padding: 10px; border-radius: 6px; border: 1px solid #ddd; font-size: 0.9rem;">
                         <strong>Teams Revealed: <span id="mlb-division-progress">0/30</span></strong>
                     </div>
                 </div>
 
-                <div id="mlb-division-message" class="game-message" style="display: none; margin-bottom: 20px;"></div>
+                <div id="mlb-division-message" class="game-message" style="display: none; margin-bottom: 10px;"></div>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;" id="mlb-division-grid">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;" id="mlb-division-grid">
                     <!-- AL Divisions (Left Column) -->
-                    <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
                         <div id="mlb-division-al-east" class="division-standings"></div>
                         <div id="mlb-division-al-central" class="division-standings"></div>
                         <div id="mlb-division-al-west" class="division-standings"></div>
                     </div>
                     
                     <!-- NL Divisions (Right Column) -->
-                    <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
                         <div id="mlb-division-nl-east" class="division-standings"></div>
                         <div id="mlb-division-nl-central" class="division-standings"></div>
                         <div id="mlb-division-nl-west" class="division-standings"></div>
                     </div>
                 </div>
 
-                <div style="margin-top: 20px;">
-                    <button id="mlb-division-new-game" onclick="newMLBDivisionGame()" style="padding: 10px 20px; background: white; border: 2px solid black; cursor: pointer; margin-right: 10px; font-size: 16px;">
+                <div style="margin-top: 8px;">
+                    <button id="mlb-division-new-game" onclick="newMLBDivisionGame()" style="padding: 6px 12px; background: white; border: 1px solid #ccc; cursor: pointer; font-size: 13px; border-radius: 3px;">
                         New Game
                     </button>
-                    <button onclick="goHome()" style="padding: 10px 20px; background: white; border: 2px solid black; cursor: pointer; font-size: 16px;">
-                        Back to Home
+                    <button id="mobileHomeButton" onclick="goHome()" style="display: none; padding: 6px 12px; background: white; border: 1px solid #007cba; color: #007cba; cursor: pointer; font-size: 13px; border-radius: 3px; margin-left: 8px;">
+                        ← Home
                     </button>
                 </div>
 
-                <div style="margin-top: 20px; font-size: 0.9rem; color: #666;">
-                    <p><strong>How to play:</strong> Click on any team position to guess which team belongs there.</p>
-                    <p>🟢 <strong>Green:</strong> Correct guess | 🔴 <strong>Red:</strong> Wrong guess</p>
-                    <p>Teams are ranked 1-5 within each division by their record!</p>
+                <div style="margin-top: 10px; font-size: 0.8rem; color: #666; line-height: 1.2;">
+                    <p style="margin: 5px 0;"><strong>How to play:</strong> Click team positions to guess division rankings.</p>
+                    <p style="margin: 5px 0;">🟢 <strong>Green:</strong> Correct | 🔴 <strong>Red:</strong> Wrong</p>
+                    <p style="margin: 5px 0;">Teams ranked 1-5 within each division!</p>
                 </div>
+                
+                <style>
+                    @media (max-width: 600px) {
+                        #mlb-division-container {
+                            max-width: none !important;
+                            margin: 0 !important;
+                            padding: 5px !important;
+                        }
+                        /* Hide header completely on mobile */
+                        #mlb-division-container > div:first-child {
+                            display: none !important;
+                        }
+                        /* Hide subtitle on mobile */
+                        #mlb-division-container > p {
+                            display: none !important;
+                        }
+                        /* Show mobile home button */
+                        #mobileHomeButton {
+                            display: inline-block !important;
+                        }
+                    }
+                </style>
             </div>
         `;
         

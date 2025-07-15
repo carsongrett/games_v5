@@ -17,13 +17,18 @@
     
     function showNBAPlayerGame() {
         document.getElementById('game-container').innerHTML = `
-            <div style="text-align: center; max-width: 1000px; margin: 0 auto;" id="gameContainer">
-                <h2>Guess the NBA Player</h2>
-                <p style="margin-bottom: 20px; color: #666;">Data is from 2024 season. Hints available on 5th and 7th guess.</p>
+            <div style="text-align: center; max-width: 1200px; margin: 0 auto; padding-top: 5px;" id="gameContainer">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <div style="margin: 0; font-size: 1.2rem; font-weight: normal;">NBA Player Guess</div>
+                    <button onclick="goHome()" style="padding: 6px 12px; background: white; border: 1px solid #ccc; cursor: pointer; font-size: 13px; border-radius: 4px;">
+                        ← Home
+                    </button>
+                </div>
+                <p style="margin: 0 0 8px 0; color: #666; font-size: 0.85rem;">2024 season data • Hints on 5th & 7th guess</p>
                 
-                <div style="margin-bottom: 20px;">
-                    <div style="margin-bottom: 10px; position: relative;">
-                        <label for="playerInput" style="display: block; margin-bottom: 5px; font-weight: bold;">Search for a player:</label>
+                <div style="margin-bottom: 10px;">
+                    <div style="margin-bottom: 6px; position: relative;">
+                        <label for="playerInput" style="display: block; margin-bottom: 3px; font-weight: normal; font-size: 0.95rem;">Search for a player:</label>
                         <input 
                             id="playerInput" 
                             type="text" 
@@ -34,29 +39,29 @@
                         <div id="playerDropdown" style="position: absolute; top: 100%; left: 0; right: 0; background: white; border: 2px solid #ccc; border-top: none; border-radius: 0 0 4px 4px; max-height: 200px; overflow-y: auto; display: none; z-index: 1000;">
                         </div>
                     </div>
-                    <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 10px;">
-                        <span style="font-weight: bold; color: #666;">Hints:</span>
-                        <button id="teamHintButton" onclick="useTeamHint()" disabled style="padding: 8px 16px; background: #ccc; color: white; border: none; cursor: not-allowed; font-size: 16px; border-radius: 4px;">
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 6px;">
+                        <span style="font-weight: normal; color: #666; font-size: 0.9rem;">Hints:</span>
+                        <button id="teamHintButton" onclick="useTeamHint()" disabled style="padding: 6px 12px; background: #ccc; color: white; border: none; cursor: not-allowed; font-size: 14px; border-radius: 3px;">
                             Team
                         </button>
-                        <button id="initialHintButton" onclick="useInitialHint()" disabled style="padding: 8px 16px; background: #ccc; color: white; border: none; cursor: not-allowed; font-size: 16px; border-radius: 4px;">
+                        <button id="initialHintButton" onclick="useInitialHint()" disabled style="padding: 6px 12px; background: #ccc; color: white; border: none; cursor: not-allowed; font-size: 14px; border-radius: 3px;">
                             Initial
                         </button>
                     </div>
-                    <button id="guessButton" onclick="makeGuess()" disabled style="padding: 10px 20px; background: #007cba; color: white; border: none; cursor: not-allowed; font-size: 16px; margin-top: 10px;">
+                    <button id="guessButton" onclick="makeGuess()" disabled style="padding: 8px 16px; background: #007cba; color: white; border: none; cursor: not-allowed; font-size: 14px; margin-top: 6px; border-radius: 3px;">
                         Make Guess
                     </button>
                 </div>
                 
-                <div style="margin-bottom: 20px;">
-                    <span style="font-size: 1.2rem; font-weight: bold;">Guesses: <span id="guessCount">0</span> / ${maxGuesses}</span>
+                <div style="margin-bottom: 8px;">
+                    <span style="font-size: 1rem; font-weight: normal;">Guesses: <span id="guessCount">0</span> / ${maxGuesses}</span>
                 </div>
                 
-                <div id="gameStatus" style="margin-bottom: 20px; font-size: 1.1rem; font-weight: bold;"></div>
+                <div id="gameStatus" style="margin-bottom: 8px; font-size: 0.95rem; font-weight: normal;"></div>
                 
-                <div id="guessesContainer" style="margin-bottom: 20px;">
+                <div id="guessesContainer" style="margin-bottom: 12px;">
                     <div id="guessesHeader" style="display: none;">
-                        <h3>Your Guesses:</h3>
+                        <div style="font-size: 1rem; font-weight: normal; margin-bottom: 8px;">Your Guesses:</div>
                         <div id="desktopHeaders" style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; gap: 5px; margin-bottom: 10px; font-weight: bold; background: #f0f0f0; padding: 10px; border-radius: 5px;">
                             <div>Player</div>
                             <div>Conference</div>
@@ -67,46 +72,88 @@
                             <div>RPG</div>
                             <div>APG</div>
                         </div>
-                        <div id="mobileHeaders" style="display: none; grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; gap: 2px; margin-bottom: 10px; font-weight: bold; background: #f0f0f0; padding: 8px; border-radius: 5px;">
-                            <div style="text-align: center; min-width: 70px;">Player</div>
-                            <div style="text-align: center; min-width: 40px;">Con.</div>
-                            <div style="text-align: center; min-width: 40px;">Tm.</div>
-                            <div style="text-align: center; min-width: 40px;">Pos.</div>
-                            <div style="text-align: center; min-width: 40px;">Age</div>
-                            <div style="text-align: center; min-width: 40px;">Pts</div>
-                            <div style="text-align: center; min-width: 40px;">Reb</div>
-                            <div style="text-align: center; min-width: 40px;">Ast</div>
+                        <div id="mobileHeaders" style="display: none; grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; gap: 2px; margin-bottom: 10px; font-weight: bold; background: #f0f0f0; padding: 6px; border-radius: 5px;">
+                            <div style="text-align: center; min-width: 70px; font-size: 11px;">Player</div>
+                            <div style="text-align: center; min-width: 40px; font-size: 11px;">Con.</div>
+                            <div style="text-align: center; min-width: 40px; font-size: 11px;">Tm.</div>
+                            <div style="text-align: center; min-width: 40px; font-size: 11px;">Pos.</div>
+                            <div style="text-align: center; min-width: 40px; font-size: 11px;">Age</div>
+                            <div style="text-align: center; min-width: 40px; font-size: 11px;">Pts</div>
+                            <div style="text-align: center; min-width: 40px; font-size: 11px;">Reb</div>
+                            <div style="text-align: center; min-width: 40px; font-size: 11px;">Ast</div>
                         </div>
                         <style>
                             @media (max-width: 600px) {
                                 #gameContainer {
                                     max-width: none !important;
                                     margin: 0 !important;
-                                    padding: 0 10px !important;
+                                    padding: 5px !important;
+                                }
+                                /* Hide header completely on mobile */
+                                #gameContainer > div:first-child {
+                                    display: none !important;
+                                }
+                                /* Hide subtitle on mobile */
+                                #gameContainer > p {
+                                    display: none !important;
                                 }
                                 #desktopHeaders { display: none !important; }
-                                #mobileHeaders { display: grid !important; }
+                                #mobileHeaders { 
+                                    display: grid !important; 
+                                    width: 100% !important;
+                                    min-width: 360px !important;
+                                }
                                 #mobileHeaders > div { 
-                                    min-height: 50px; 
+                                    min-height: 35px; 
                                     display: flex; 
                                     align-items: center; 
                                     justify-content: center;
+                                    font-weight: bold !important;
+                                }
+                                #guessesContainer {
+                                    overflow-x: auto !important;
+                                    width: 100% !important;
+                                    -webkit-overflow-scrolling: touch !important;
                                 }
                                 #guessesList > div {
                                     grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr !important;
                                     gap: 2px !important;
+                                    min-width: 360px !important;
+                                    padding: 6px !important;
+                                    margin-bottom: 3px !important;
                                 }
                                 #guessesList > div > div {
-                                    min-width: 40px !important;
                                     text-align: center !important;
-                                    padding: 6px 2px !important;
-                                    overflow: visible !important;
-                                    text-overflow: clip !important;
-                                    font-size: 14px !important;
+                                    padding: 4px 1px !important;
+                                    overflow: hidden !important;
+                                    text-overflow: ellipsis !important;
+                                    font-size: 10px !important;
+                                    line-height: 1.2 !important;
+                                    border-radius: 2px !important;
+                                    min-width: 28px !important;
                                 }
                                 #guessesList > div > div:first-child {
-                                    min-width: 70px !important;
                                     text-align: left !important;
+                                    font-size: 11px !important;
+                                    font-weight: bold !important;
+                                    min-width: 70px !important;
+                                    max-width: 70px !important;
+                                    overflow: hidden !important;
+                                    text-overflow: ellipsis !important;
+                                }
+                                #guessesList {
+                                    width: 100% !important;
+                                    overflow-x: auto !important;
+                                    -webkit-overflow-scrolling: touch !important;
+                                }
+                                /* Make the entire guesses container scrollable */
+                                #guessesHeader,
+                                #guessesList {
+                                    min-width: 360px !important;
+                                }
+                                /* Show mobile home button */
+                                #mobileHomeButton {
+                                    display: inline-block !important;
                                 }
                             }
                         </style>
@@ -114,19 +161,19 @@
                     <div id="guessesList"></div>
                 </div>
                 
-                <div style="margin-top: 20px;">
-                    <button id="newGameButton" onclick="startNewGame()" style="padding: 10px 20px; background: white; border: 2px solid black; cursor: pointer; margin-right: 10px; font-size: 16px;">
+                <div style="margin-top: 8px;">
+                    <button id="newGameButton" onclick="startNewGame()" style="padding: 6px 12px; background: white; border: 1px solid #ccc; cursor: pointer; font-size: 13px; border-radius: 3px;">
                         New Game
                     </button>
-                    <button onclick="goHome()" style="padding: 10px 20px; background: white; border: 2px solid black; cursor: pointer; font-size: 16px;">
-                        Back to Home
+                    <button id="mobileHomeButton" onclick="goHome()" style="display: none; padding: 6px 12px; background: white; border: 1px solid #007cba; color: #007cba; cursor: pointer; font-size: 13px; border-radius: 3px; margin-left: 8px;">
+                        ← Home
                     </button>
                 </div>
                 
-                <div style="margin-top: 20px; font-size: 0.9rem; color: #666;">
-                    <p><strong>How to play:</strong> Type to search for players by name, team, or position. Use arrow keys to navigate, Enter to select.</p>
-                    <p>🟢 <strong>Green:</strong> Correct match | 🟡 <strong>Yellow:</strong> Close (within 3 years, 5 PPG, 3 RPG, 2 APG) | ⬜ <strong>Gray:</strong> Wrong</p>
-                    <p>↑ <strong>Arrow up:</strong> Target is higher | ↓ <strong>Arrow down:</strong> Target is lower</p>
+                <div style="margin-top: 10px; font-size: 0.8rem; color: #666; line-height: 1.2;">
+                    <p style="margin: 5px 0;"><strong>How to play:</strong> Search players by name, team, or position. Use arrows to navigate.</p>
+                    <p style="margin: 5px 0;">🟢 <strong>Green:</strong> Correct | 🟡 <strong>Yellow:</strong> Close (±3 years, ±5 PPG, ±3 RPG, ±2 APG) | ⬜ <strong>Gray:</strong> Wrong</p>
+                    <p style="margin: 5px 0;">↑ <strong>Target higher</strong> | ↓ <strong>Target lower</strong></p>
                 </div>
             </div>
         `;

@@ -7,40 +7,67 @@
 
     function showMLBStandingsGame() {
         document.getElementById('game-container').innerHTML = `
-            <div style="text-align: center; max-width: 1200px; margin: 0 auto;" id="mlb-standings-container">
-                <h2>MLB Standings Challenge</h2>
-                <p style="margin-bottom: 20px; color: #666;">Guess which team belongs in each league ranking position. You have 15 lives!</p>
+            <div style="text-align: center; max-width: 1200px; margin: 0 auto; padding-top: 5px;" id="mlb-standings-container">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <div style="margin: 0; font-size: 1.2rem; font-weight: normal;">MLB Standings Challenge</div>
+                    <button onclick="goHome()" style="padding: 6px 12px; background: white; border: 1px solid #ccc; cursor: pointer; font-size: 13px; border-radius: 4px;">
+                        ← Home
+                    </button>
+                </div>
+                <p style="margin: 0 0 8px 0; color: #666; font-size: 0.85rem;">Guess team rankings • 15 lives • Current season data</p>
                 
-                <div style="margin-bottom: 20px; display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
-                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border: 2px solid #ddd;">
+                <div style="margin-bottom: 10px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                    <div style="background: #f8f9fa; padding: 10px; border-radius: 6px; border: 1px solid #ddd; font-size: 0.9rem;">
                         <strong>Lives: <span id="mlb-standings-lives">15</span></strong>
                     </div>
-                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border: 2px solid #ddd;">
+                    <div style="background: #f8f9fa; padding: 10px; border-radius: 6px; border: 1px solid #ddd; font-size: 0.9rem;">
                         <strong>Teams Revealed: <span id="mlb-standings-progress">0/30</span></strong>
                     </div>
                 </div>
 
-                <div id="mlb-standings-message" class="game-message" style="display: none; margin-bottom: 20px;"></div>
+                <div id="mlb-standings-message" class="game-message" style="display: none; margin-bottom: 10px;"></div>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 20px;" id="mlb-standings-grid">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 15px;" id="mlb-standings-grid">
                     <div id="mlb-standings-al" class="league-standings"></div>
                     <div id="mlb-standings-nl" class="league-standings"></div>
                 </div>
 
-                <div style="margin-top: 20px;">
-                    <button id="mlb-standings-new-game" onclick="newMLBStandingsGame()" style="padding: 10px 20px; background: white; border: 2px solid black; cursor: pointer; margin-right: 10px; font-size: 16px;">
+                <div style="margin-top: 8px;">
+                    <button id="mlb-standings-new-game" onclick="newMLBStandingsGame()" style="padding: 6px 12px; background: white; border: 1px solid #ccc; cursor: pointer; font-size: 13px; border-radius: 3px;">
                         New Game
                     </button>
-                    <button onclick="goHome()" style="padding: 10px 20px; background: white; border: 2px solid black; cursor: pointer; font-size: 16px;">
-                        Back to Home
+                    <button id="mobileHomeButton" onclick="goHome()" style="display: none; padding: 6px 12px; background: white; border: 1px solid #007cba; color: #007cba; cursor: pointer; font-size: 13px; border-radius: 3px; margin-left: 8px;">
+                        ← Home
                     </button>
                 </div>
 
-                <div style="margin-top: 20px; font-size: 0.9rem; color: #666;">
-                    <p><strong>How to play:</strong> Click on any team position to guess which team belongs there.</p>
-                    <p>🟢 <strong>Green:</strong> Correct guess | 🔴 <strong>Red:</strong> Wrong guess</p>
-                    <p>Game uses real MLB standings data from the current season!</p>
+                <div style="margin-top: 10px; font-size: 0.8rem; color: #666; line-height: 1.2;">
+                    <p style="margin: 5px 0;"><strong>How to play:</strong> Click team positions to guess rankings.</p>
+                    <p style="margin: 5px 0;">🟢 <strong>Green:</strong> Correct | 🔴 <strong>Red:</strong> Wrong</p>
+                    <p style="margin: 5px 0;">Uses real MLB standings data!</p>
                 </div>
+                
+                <style>
+                    @media (max-width: 600px) {
+                        #mlb-standings-container {
+                            max-width: none !important;
+                            margin: 0 !important;
+                            padding: 5px !important;
+                        }
+                        /* Hide header completely on mobile */
+                        #mlb-standings-container > div:first-child {
+                            display: none !important;
+                        }
+                        /* Hide subtitle on mobile */
+                        #mlb-standings-container > p {
+                            display: none !important;
+                        }
+                        /* Show mobile home button */
+                        #mobileHomeButton {
+                            display: inline-block !important;
+                        }
+                    }
+                </style>
             </div>
         `;
         

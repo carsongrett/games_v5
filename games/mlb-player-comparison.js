@@ -7,39 +7,66 @@
 
     function showMLBComparisonGame() {
         document.getElementById('game-container').innerHTML = `
-            <div style="text-align: center; max-width: 1000px; margin: 0 auto;" id="mlb-comparison-container">
-                <h2>MLB Pitcher Comparison Challenge</h2>
-                <p style="margin-bottom: 20px; color: #666;">Compare two pitchers and guess who has the better stat. 10 questions using 2025 season data!</p>
+            <div style="text-align: center; max-width: 1200px; margin: 0 auto; padding-top: 5px;" id="mlb-comparison-container">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <div style="margin: 0; font-size: 1.2rem; font-weight: normal;">MLB Pitcher Comparison</div>
+                    <button onclick="goHome()" style="padding: 6px 12px; background: white; border: 1px solid #ccc; cursor: pointer; font-size: 13px; border-radius: 4px;">
+                        ← Home
+                    </button>
+                </div>
+                <p style="margin: 0 0 8px 0; color: #666; font-size: 0.85rem;">Compare pitchers • 10 questions • 2025 season data</p>
                 
-                <div style="margin-bottom: 20px; display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
-                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border: 2px solid #ddd;">
+                <div style="margin-bottom: 10px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                    <div style="background: #f8f9fa; padding: 10px; border-radius: 6px; border: 1px solid #ddd; font-size: 0.9rem;">
                         <strong>Question: <span id="mlb-comparison-question-number">1</span> / 10</strong>
                     </div>
-                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border: 2px solid #ddd;">
+                    <div style="background: #f8f9fa; padding: 10px; border-radius: 6px; border: 1px solid #ddd; font-size: 0.9rem;">
                         <strong>Score: <span id="mlb-comparison-score">0</span> / 10</strong>
                     </div>
                 </div>
 
-                <div id="mlb-comparison-message" class="game-message" style="display: none; margin-bottom: 20px;"></div>
+                <div id="mlb-comparison-message" class="game-message" style="display: none; margin-bottom: 10px;"></div>
 
-                <div id="mlb-comparison-question-container" style="margin-bottom: 30px;">
+                <div id="mlb-comparison-question-container" style="margin-bottom: 15px;">
                     <!-- Game content will be loaded here -->
                 </div>
 
-                <div style="margin-top: 20px;">
-                    <button id="mlb-comparison-new-game" onclick="newMLBComparisonGame()" style="padding: 10px 20px; background: white; border: 2px solid black; cursor: pointer; margin-right: 10px; font-size: 16px;">
+                <div style="margin-top: 8px;">
+                    <button id="mlb-comparison-new-game" onclick="newMLBComparisonGame()" style="padding: 6px 12px; background: white; border: 1px solid #ccc; cursor: pointer; font-size: 13px; border-radius: 3px;">
                         New Game
                     </button>
-                    <button onclick="goHome()" style="padding: 10px 20px; background: white; border: 2px solid black; cursor: pointer; font-size: 16px;">
-                        Back to Home
+                    <button id="mobileHomeButton" onclick="goHome()" style="display: none; padding: 6px 12px; background: white; border: 1px solid #007cba; color: #007cba; cursor: pointer; font-size: 13px; border-radius: 3px; margin-left: 8px;">
+                        ← Home
                     </button>
                 </div>
 
-                <div style="margin-top: 20px; font-size: 0.9rem; color: #666;">
-                    <p><strong>How to play:</strong> Read the question and click on the pitcher who has the better stat.</p>
-                    <p>🟢 <strong>Green:</strong> Correct answer | 🔴 <strong>Red:</strong> Wrong answer</p>
-                    <p>Game uses real 2025 MLB pitcher data!</p>
+                <div style="margin-top: 10px; font-size: 0.8rem; color: #666; line-height: 1.2;">
+                    <p style="margin: 5px 0;"><strong>How to play:</strong> Click the pitcher with the better stat.</p>
+                    <p style="margin: 5px 0;">🟢 <strong>Green:</strong> Correct | 🔴 <strong>Red:</strong> Wrong</p>
+                    <p style="margin: 5px 0;">Uses real 2025 MLB pitcher data!</p>
                 </div>
+                
+                <style>
+                    @media (max-width: 600px) {
+                        #mlb-comparison-container {
+                            max-width: none !important;
+                            margin: 0 !important;
+                            padding: 5px !important;
+                        }
+                        /* Hide header completely on mobile */
+                        #mlb-comparison-container > div:first-child {
+                            display: none !important;
+                        }
+                        /* Hide subtitle on mobile */
+                        #mlb-comparison-container > p {
+                            display: none !important;
+                        }
+                        /* Show mobile home button */
+                        #mobileHomeButton {
+                            display: inline-block !important;
+                        }
+                    }
+                </style>
             </div>
         `;
         
