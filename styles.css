@@ -258,6 +258,10 @@ footer {
     font-size: 14px;
     transition: all 0.3s ease;
     width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .hidden-team-btn:hover {
@@ -271,6 +275,10 @@ footer {
     border-radius: 4px;
     display: inline-block;
     width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .correct-guess {

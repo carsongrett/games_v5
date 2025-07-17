@@ -415,21 +415,21 @@ class MLBStandingsGame {
 
         // Replace the button with an inline form
         clickedButton.parentElement.innerHTML = `
-            <div style="display: flex; flex-direction: column; gap: 10px; padding: 10px; background: #f8f9fa; border-radius: 8px;">
-                <strong>Select team for ${leagueId.toUpperCase()} Rank #${rank}:</strong>
-                <select id="inline-team-selector-${teamId}" style="padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
-                    <option value="">Choose a team...</option>
+            <div style="display: flex; flex-direction: column; gap: 5px; background: #f8f9fa; border-radius: 4px; font-size: 0.85rem;">
+                <strong style="font-size: 0.9rem;">Select team for ${leagueId.toUpperCase()} #${rank}:</strong>
+                <select id="inline-team-selector-${teamId}" style="padding: 4px; border-radius: 3px; border: 1px solid #ccc; font-size: 0.8em; max-width: 180px;">
+                    <option value="">Choose team...</option>
                     ${sortedTeams.map(team => 
                         `<option value="${team.id}">${team.name}</option>`
                     ).join('')}
                 </select>
-                <div style="display: flex; gap: 10px;">
-                    <button id="inline-submit-${teamId}" disabled style="padding: 8px 16px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                <div style="display: flex; gap: 5px;">
+                    <button id="inline-submit-${teamId}" disabled style="padding: 4px 8px; background: #28a745; color: white; border: none; border-radius: 3px; cursor: pointer; font-size: 0.75rem;">
                         Submit
                     </button>
-                                         <button id="inline-cancel-${teamId}" style="padding: 8px 16px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer;">
-                         Cancel
-                     </button>
+                    <button id="inline-cancel-${teamId}" style="padding: 4px 8px; background: #6c757d; color: white; border: none; border-radius: 3px; cursor: pointer; font-size: 0.75rem;">
+                        Cancel
+                    </button>
                 </div>
             </div>
         `;
@@ -584,6 +584,7 @@ class MLBStandingsGame {
     newGame() {
         this.setupGame();
         this.showMessage('New game started! Click on any team position to make your guess.', 'info');
+        setTimeout(() => this.hideMessage(), 3000);
     }
 
     updateDisplay() {
