@@ -7,7 +7,7 @@
 
     function showMLBComparisonGame() {
         document.getElementById('game-container').innerHTML = `
-            <div style="text-align: center; max-width: 1200px; margin: 0 auto; padding-top: 5px;" id="mlb-comparison-container">
+            <div style="text-align: center; max-width: 1200px; margin: 0 auto; padding-top: 5px; min-height: 600px;" id="mlb-comparison-container">
                 <div class="game-header">
                     <div class="game-title">MLB Pitcher Comparison</div>
                 </div>

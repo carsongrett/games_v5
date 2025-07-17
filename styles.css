@@ -131,6 +131,18 @@ footer {
     margin-bottom: 8px;
 }
 
+/* MLB Comparison Game Container */
+#mlb-comparison-container {
+    min-height: 600px;
+}
+
+#mlb-comparison-question-container {
+    min-height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 /* MLB Standings Game Styles */
 .game-message {
     padding: 15px;
