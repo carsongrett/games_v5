@@ -18,11 +18,8 @@
     function showMLBPlayerGame() {
         document.getElementById('game-container').innerHTML = `
             <div style="text-align: center; max-width: 1200px; margin: 0 auto; padding-top: 5px;" id="gameContainer">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                    <div style="margin: 0; font-size: 1.2rem; font-weight: normal;">MLB Player Guess</div>
-                    <button onclick="goHome()" style="padding: 6px 12px; background: white; border: 1px solid #ccc; cursor: pointer; font-size: 13px; border-radius: 4px;">
-                        ← Home
-                    </button>
+                <div class="game-header">
+                    <div class="game-title">MLB Player Guess</div>
                 </div>
                 <p style="margin: 0 0 8px 0; color: #666; font-size: 0.85rem;">2025 season data • Hints on 5th & 7th guess</p>
                 

@@ -108,6 +108,29 @@ footer {
     }
 }
 
+/* Game Title Styles */
+.game-title {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.game-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.game-header-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
 /* MLB Standings Game Styles */
 .game-message {
     padding: 15px;

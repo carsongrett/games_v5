@@ -8,11 +8,8 @@
     function showMLBDivisionGame() {
         document.getElementById('game-container').innerHTML = `
             <div style="text-align: center; max-width: 1400px; margin: 0 auto; padding-top: 5px;" id="mlb-division-container">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                    <div style="margin: 0; font-size: 1.2rem; font-weight: normal;">MLB Division Challenge</div>
-                    <button onclick="goHome()" style="padding: 6px 12px; background: white; border: 1px solid #ccc; cursor: pointer; font-size: 13px; border-radius: 4px;">
-                        ← Home
-                    </button>
+                <div class="game-header">
+                    <div class="game-title">MLB Division Challenge</div>
                 </div>
                 <p style="margin: 0 0 8px 0; color: #666; font-size: 0.85rem;">Guess division rankings • 15 lives • Current season data</p>
                 
